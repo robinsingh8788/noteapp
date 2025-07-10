@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/pocketnotesapp/static/css/main.b9167a74.css",
-    "main.js": "/pocketnotesapp/static/js/main.b0229ddd.js",
-    "index.html": "/pocketnotesapp/index.html",
-    "main.b9167a74.css.map": "/pocketnotesapp/static/css/main.b9167a74.css.map",
-    "main.b0229ddd.js.map": "/pocketnotesapp/static/js/main.b0229ddd.js.map"
+    "main.css": "/noteapp/static/css/main.b9167a74.css",
+    "main.js": "/noteapp/static/js/main.27314d73.js",
+    "index.html": "/noteapp/index.html",
+    "main.b9167a74.css.map": "/noteapp/static/css/main.b9167a74.css.map",
+    "main.27314d73.js.map": "/noteapp/static/js/main.27314d73.js.map"
   },
   "entrypoints": [
     "static/css/main.b9167a74.css",
-    "static/js/main.b0229ddd.js"
+    "static/js/main.27314d73.js"
   ]
 }
