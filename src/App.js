@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { getGroups, saveGroups, getNotes, saveNotes } from './utils/storage';
+import {
+  getGroups,
+  saveGroups,
+  getNotes,
+  saveNotes,
+  getSelectedGroup,
+  setSelectedGroup,
+} from './utils/storage';
 
 function App() {
   const [groups, setGroups] = useState([]);
-  const [selectedGroup, setSelectedGroup] = useState(null);
+  const [selectedGroup, setSelectedGroupState] = useState(null);
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState('');
   const [showPopup, setShowPopup] = useState(false);
@@ -17,7 +24,13 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const saved = getSelectedGroup();
+    if (saved) setSelectedGroupState(saved);
+  }, []);
+
+  useEffect(() => {
     if (selectedGroup) {
+      setSelectedGroup(selectedGroup);
       const savedNotes = getNotes(selectedGroup);
       setNotes(savedNotes);
     }
@@ -44,8 +57,14 @@ function App() {
     const newNoteObj = {
       id: Date.now(),
       content: newNote,
-      createdAt: now.toLocaleString(),
-      updatedAt: now.toLocaleString(),
+      createdAt: now.toLocaleString('en-IN', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      }),
+      updatedAt: now.toLocaleString('en-IN', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      }),
     };
     const updatedNotes = [...notes, newNoteObj];
     setNotes(updatedNotes);
@@ -64,8 +83,7 @@ function App() {
     for (let i = 0; i < str.length; i++) {
       hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
-    const color = `hsl(${hash % 360}, 70%, 70%)`;
-    return color;
+    return `hsl(${hash % 360}, 70%, 70%)`;
   }
 
   function getGroupColor(group) {
@@ -82,7 +100,7 @@ function App() {
             <li
               key={i}
               className={group === selectedGroup ? 'active' : ''}
-              onClick={() => setSelectedGroup(group)}>
+              onClick={() => setSelectedGroupState(group)}>
               <span className="avatar" style={{ backgroundColor: getGroupColor(group) }}>
                 {group.slice(0, 2).toUpperCase()}
               </span>
@@ -135,7 +153,6 @@ function App() {
         ) : (
           <div className="placeholder">
             <img src={`${process.env.PUBLIC_URL}/welcome.png`} alt="Welcome" />
-
             <h1>Pocket Notes</h1>
             <p>Send and receive messages without keeping your phone online.</p>
             <p>Use Pocket Notes on up to 4 linked devices and 1 mobile phone.</p>
@@ -163,13 +180,6 @@ function App() {
                 value={newGroupName}
                 onChange={e => setNewGroupName(e.target.value)}
                 placeholder="Enter group name"
-                style={{
-                  padding: '10px',
-                  fontSize: '14px',
-                  borderRadius: '6px',
-                  border: '1px solid #ccc',
-                  flex: 1
-                }}
               />
             </div>
 

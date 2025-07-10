@@ -1,4 +1,3 @@
-
 export function getGroups() {
   const data = localStorage.getItem("note-groups");
   return data ? JSON.parse(data) : [];
@@ -15,4 +14,12 @@ export function getNotes(groupName) {
 
 export function saveNotes(groupName, notes) {
   localStorage.setItem(`notes-${groupName}`, JSON.stringify(notes));
+}
+
+export function getSelectedGroup() {
+  return localStorage.getItem("selected-group");
+}
+
+export function setSelectedGroup(groupName) {
+  localStorage.setItem("selected-group", groupName);
 }

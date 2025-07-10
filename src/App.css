@@ -1,4 +1,3 @@
-
 body, html {
   margin: 0;
   padding: 0;
@@ -23,19 +22,12 @@ body, html {
   justify-content: space-between;
 }
 
-.sidebar h2 {
-  font-size: 24px;
-  color: #4a4eff;
-  margin-bottom: 20px;
-}
-
 .sidebar-title {
   text-align: center;
   font-size: 24px;
   color: #4a4eff;
   margin-bottom: 20px;
 }
-
 
 .sidebar ul {
   list-style: none;
@@ -84,13 +76,9 @@ body, html {
   font-size: 24px;
   cursor: pointer;
   margin-top: 10px;
-
-  
   margin-left: auto;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
-
-
 
 /* Main screen */
 .main {
@@ -119,8 +107,6 @@ body, html {
   display: block;
   margin: 0 auto 20px auto;
 }
-
-
 
 .placeholder h1 {
   font-size: 32px;
@@ -151,6 +137,7 @@ body, html {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: relative;
   min-height: 100px;
+  padding-right: 40px;
 }
 
 .timestamps {
@@ -162,7 +149,6 @@ body, html {
   color: #888;
   line-height: 1.3;
 }
-
 
 .note small {
   display: block;
@@ -246,7 +232,7 @@ body, html {
   padding: 10px 15px;
   border-radius: 8px;
   cursor: pointer;
-   margin-left: auto;
+  margin-left: auto;
   display: block;
 }
 
@@ -277,7 +263,7 @@ body, html {
 }
 
 .top-bar {
-  background-color: #4a4eff; 
+  background-color: #4a4eff;
   color: white;
   width: 100%;
   padding: 15px 30px;
@@ -322,9 +308,49 @@ body, html {
   right: 10px;
 }
 
-.note {
-  position: relative;
-  padding-right: 40px; 
+/* Responsive design */
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .sidebar li {
+    flex: 1 1 calc(50% - 20px);
+  }
+
+  .main {
+    padding: 15px;
+    align-items: stretch;
+  }
+
+  .note-input {
+    flex-direction: column;
+  }
+
+  .note-input input {
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .note-input button {
+    border-radius: 10px;
+  }
+
+  .popup {
+    width: 90%;
+  }
 }
-
-
